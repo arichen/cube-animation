@@ -9,13 +9,16 @@
 #import "ShapeViewController.h"
 
 @interface ShapeViewController ()
-
+@property (nonatomic) CALayer *shapeLayer;
 @end
 
 @implementation ShapeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"N Animation";
+    self.view.layer.backgroundColor = [UIColor blackColor].CGColor;
+    
     [self drawShape];
     [self animateShape];
 }
@@ -26,6 +29,10 @@
 }
 
 - (void)drawShape {
+    UIColor *darkRedColor = [UIColor colorWithRed:177.f/256 green:6.f/256 blue:15.f/256 alpha:1];
+    UIColor *redColor = [UIColor colorWithRed:229.f/256 green:9.f/256 blue:20.f/256 alpha:1];
+    UIColor *shadowColor = [UIColor colorWithRed:130.f/256 green:2.f/256 blue:13.f/256 alpha:.2];
+    
     CALayer *shapeLayer = [CALayer layer];
     shapeLayer.frame = CGRectMake(0, 0, 138, 250);
     shapeLayer.position = self.view.center;
@@ -38,7 +45,7 @@
     [path addLineToPoint:CGPointMake(50, 0)];
     [path closePath];
     
-    CAShapeLayer *layer = [self shapeWithPath:path.CGPath];
+    CAShapeLayer *layer = [self shapeWithPath:path.CGPath withColor:darkRedColor];
     [shapeLayer addSublayer:layer];
     
     // 2nd - right
@@ -46,7 +53,7 @@
     transform = CGAffineTransformTranslate(transform, -138, 0);
     [path applyTransform:transform];
     
-    layer = [self shapeWithPath:path.CGPath];
+    layer = [self shapeWithPath:path.CGPath withColor:darkRedColor];
     [shapeLayer addSublayer:layer];
     
     // 3rd - middle
@@ -57,28 +64,62 @@
     [path addLineToPoint:CGPointMake(50, 0)];
     [path closePath];
     
-    layer = [self shapeWithPath:path.CGPath];
+    layer = [self shapeWithPath:path.CGPath withColor:redColor];
     [shapeLayer addSublayer:layer];
     
-    // shadow
-    CALayer *shadow = [CALayer layer];
-    shadow.frame = CGPathGetBoundingBox(path.CGPath);
-    shadow.backgroundColor = [UIColor grayColor].CGColor;
-    shadow.mask = layer;
-    [shapeLayer addSublayer:shadow];
+    // shadow mask
+    path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(-3, 0)];
+    [path addLineToPoint:CGPointMake(85, 250)];
+    [path addLineToPoint:CGPointMake(141, 250)];
+    [path addLineToPoint:CGPointMake(53, 0)];
+    [path closePath];
+    
+    CAShapeLayer *shadow = [self shapeWithPath:path.CGPath withColor:shadowColor];
+    [shapeLayer insertSublayer:shadow below:layer];
     
     [self.view.layer addSublayer:shapeLayer];
+    self.shapeLayer = shapeLayer;
 }
 
-- (CAShapeLayer *)shapeWithPath:(CGPathRef)path {
+- (CAShapeLayer *)shapeWithPath:(CGPathRef)path withColor:(UIColor *)color {
     CAShapeLayer *layer = [CAShapeLayer layer];
-    layer.fillColor = [UIColor redColor].CGColor;
+    layer.fillColor = color.CGColor;
     layer.path = path;
     return layer;
 }
 
 - (void)animateShape {
+    [CATransaction begin];
+
+    // 1st animation
+    CABasicAnimation *rotate = [CABasicAnimation animation];
+    rotate.keyPath = @"transform.rotation.z";
+    rotate.fromValue = @(0);
+    rotate.toValue = @(-M_PI * 6);
     
+    CAKeyframeAnimation *scale = [CAKeyframeAnimation animation];
+    scale.keyPath = @"transform.scale";
+    scale.values = @[ @0, @.5, @1 ];
+    scale.keyTimes = @[ @0, @.8, @1 ];
+    
+    CAAnimationGroup *animation = [CAAnimationGroup animation];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.animations = @[rotate, scale];
+    animation.duration = .6;
+    
+    [_shapeLayer addAnimation:animation forKey:@"animation1"];
+    
+    // 2nd animation
+    scale = [CAKeyframeAnimation animation];
+    scale.keyPath = @"transform.scale";
+    scale.values = @[ @1, @1.1, @.9, @1 ];
+    scale.keyTimes = @[ @0, @.3, @.6, @1 ];
+    scale.beginTime = CACurrentMediaTime() + .7;
+    scale.duration = .4;
+    [_shapeLayer addAnimation:scale forKey:@"animation2"];
+    
+    [CATransaction commit];
 }
 
 @end

@@ -23,6 +23,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    self.title = @"3D Cube Animation";
+    
     [self drawCube];
     [self animateCube3D];
 }
