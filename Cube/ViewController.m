@@ -19,6 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self drawCube];
     [self animateCube3D];
 }
@@ -72,24 +76,26 @@
 }
 
 - (void)animateCube3D {
-    CATransform3D before = self.view.layer.sublayerTransform;
-    CATransform3D after = CATransform3DRotate(before, -M_PI_2, 0, 1, 1);
-    
     [CATransaction begin];
-    [CATransaction setCompletionBlock:^{
-        self.view.layer.sublayerTransform = after;
-        [self animateCube3D];
-    }];
     
-    CABasicAnimation *animation = [CABasicAnimation animation];
-    animation.keyPath = @"sublayerTransform";
-    animation.fromValue = [NSValue valueWithCATransform3D:before];
-    animation.toValue = [NSValue valueWithCATransform3D:after];
-    animation.duration = 2;
-    [self.view.layer addAnimation:animation forKey:@"animation"];
+    CABasicAnimation *rotateX = [CABasicAnimation animation];
+    rotateX.keyPath = @"sublayerTransform.rotation.x";
+    rotateX.fromValue = @(0);
+    rotateX.toValue = @(-M_PI * 2);
+    
+    CABasicAnimation *rotateY = [CABasicAnimation animation];
+    rotateY.keyPath = @"sublayerTransform.rotation.y";
+    rotateY.fromValue = @(0);
+    rotateY.toValue = @(-M_PI * 2);
+    
+    CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
+    animationGroup.animations = @[rotateX, rotateY];
+    animationGroup.duration = 8;
+    animationGroup.repeatCount = HUGE_VAL;
+    
+    [self.view.layer addAnimation:animationGroup forKey:@"animation"];
     
     [CATransaction commit];
-    
 }
 
 @end

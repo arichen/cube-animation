@@ -14,6 +14,7 @@
 		D4064C771D2DC71700050E57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4064C761D2DC71700050E57 /* Assets.xcassets */; };
 		D4064C7A1D2DC71700050E57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4064C781D2DC71700050E57 /* LaunchScreen.storyboard */; };
 		D4F7630B1D2DC73E00BFC9C7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F7630A1D2DC73E00BFC9C7 /* QuartzCore.framework */; };
+		D4F7630E1D2EC3D200BFC9C7 /* ShapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F7630D1D2EC3D200BFC9C7 /* ShapeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		D4064C791D2DC71700050E57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4064C7B1D2DC71700050E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4F7630A1D2DC73E00BFC9C7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D4F7630C1D2EC3D200BFC9C7 /* ShapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeViewController.h; sourceTree = "<group>"; };
+		D4F7630D1D2EC3D200BFC9C7 /* ShapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,8 @@
 				D4064C6E1D2DC71700050E57 /* AppDelegate.m */,
 				D4064C701D2DC71700050E57 /* ViewController.h */,
 				D4064C711D2DC71700050E57 /* ViewController.m */,
+				D4F7630C1D2EC3D200BFC9C7 /* ShapeViewController.h */,
+				D4F7630D1D2EC3D200BFC9C7 /* ShapeViewController.m */,
 				D4064C731D2DC71700050E57 /* Main.storyboard */,
 				D4064C761D2DC71700050E57 /* Assets.xcassets */,
 				D4064C781D2DC71700050E57 /* LaunchScreen.storyboard */,
@@ -153,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F7630E1D2EC3D200BFC9C7 /* ShapeViewController.m in Sources */,
 				D4064C721D2DC71700050E57 /* ViewController.m in Sources */,
 				D4064C6F1D2DC71700050E57 /* AppDelegate.m in Sources */,
 				D4064C6C1D2DC71700050E57 /* main.m in Sources */,
