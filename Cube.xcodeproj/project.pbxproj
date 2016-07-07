@@ -13,6 +13,7 @@
 		D4064C751D2DC71700050E57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4064C731D2DC71700050E57 /* Main.storyboard */; };
 		D4064C771D2DC71700050E57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4064C761D2DC71700050E57 /* Assets.xcassets */; };
 		D4064C7A1D2DC71700050E57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4064C781D2DC71700050E57 /* LaunchScreen.storyboard */; };
+		D4F7630B1D2DC73E00BFC9C7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F7630A1D2DC73E00BFC9C7 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D4064C761D2DC71700050E57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4064C791D2DC71700050E57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4064C7B1D2DC71700050E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4F7630A1D2DC73E00BFC9C7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F7630B1D2DC73E00BFC9C7 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +45,7 @@
 		D4064C5E1D2DC71700050E57 = {
 			isa = PBXGroup;
 			children = (
+				D4F7630A1D2DC73E00BFC9C7 /* QuartzCore.framework */,
 				D4064C691D2DC71700050E57 /* Cube */,
 				D4064C681D2DC71700050E57 /* Products */,
 			);
@@ -300,6 +304,7 @@
 				D4064C801D2DC71700050E57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
